@@ -40,6 +40,11 @@ public class TaichuClient {
 
     }
 
+    /**
+     * 调用8B模型
+     *
+     * @param request8B request8B
+     */
     private void invoke8B(TaichuRequest8B request8B) {
         request8B.setModelCode(Constant.TAICHU_LLA_8B);
         request8B.setApiKey(taichuProperties.getApiKey());
@@ -63,6 +68,11 @@ public class TaichuClient {
         }
     }
 
+    /**
+     * 调用10B模型
+     *
+     * @param request10B request10B
+     */
     private void invoke10B(TaichuRequest10B request10B) {
         request10B.setModelCode(Constant.TAICHU_VQA_10B);
         request10B.setApiKey(taichuProperties.getApiKey());

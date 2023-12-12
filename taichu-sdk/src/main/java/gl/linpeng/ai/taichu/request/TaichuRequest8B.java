@@ -2,6 +2,9 @@ package gl.linpeng.ai.taichu.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+/**
+ * 太初8B模型请求对象
+ */
 public class TaichuRequest8B extends TaichuRequest {
     /**
      * 是否流式输出，默认true

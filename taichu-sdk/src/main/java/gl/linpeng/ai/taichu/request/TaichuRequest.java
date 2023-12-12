@@ -2,6 +2,9 @@ package gl.linpeng.ai.taichu.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+/**
+ * 太初请求参数
+ */
 public class TaichuRequest {
 
     @JSONField(name = "api_key")
