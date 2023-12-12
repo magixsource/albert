@@ -1,4 +1,4 @@
-package gl.linpeng.ai.taichu.constants;
+package gl.linpeng.ai.taichu.constant;
 
 /**
  * Taichu constant

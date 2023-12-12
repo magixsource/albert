@@ -1,6 +1,6 @@
 package gl.linpeng.ai.taichu;
 
-import gl.linpeng.ai.taichu.request.TaichuRequest8B;
+import gl.linpeng.ai.taichu.protocol.request.TaichuRequest8B;
 
 public class TaichuTests {
 

@@ -1,4 +1,4 @@
-package gl.linpeng.ai.taichu.request;
+package gl.linpeng.ai.taichu.protocol.request;
 
 /**
  * 太初10B模型请求对象

@@ -1,4 +1,4 @@
-package gl.linpeng.ai.taichu.response;
+package gl.linpeng.ai.taichu.protocol.response;
 
 /**
  * 非流式响应体

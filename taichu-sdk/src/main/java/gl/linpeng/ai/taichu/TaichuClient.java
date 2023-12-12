@@ -3,12 +3,12 @@ package gl.linpeng.ai.taichu;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import gl.linpeng.ai.taichu.config.TaichuProperties;
-import gl.linpeng.ai.taichu.constants.Constant;
-import gl.linpeng.ai.taichu.request.TaichuRequest;
-import gl.linpeng.ai.taichu.request.TaichuRequest10B;
-import gl.linpeng.ai.taichu.request.TaichuRequest8B;
-import gl.linpeng.ai.taichu.response.TaichuResponse;
-import gl.linpeng.ai.taichu.response.TaichuStreamResponse;
+import gl.linpeng.ai.taichu.constant.Constant;
+import gl.linpeng.ai.taichu.protocol.request.TaichuRequest;
+import gl.linpeng.ai.taichu.protocol.request.TaichuRequest10B;
+import gl.linpeng.ai.taichu.protocol.request.TaichuRequest8B;
+import gl.linpeng.ai.taichu.protocol.response.TaichuResponse;
+import gl.linpeng.ai.taichu.protocol.response.TaichuStreamResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

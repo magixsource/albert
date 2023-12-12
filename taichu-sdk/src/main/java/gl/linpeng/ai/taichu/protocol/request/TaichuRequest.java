@@ -1,4 +1,4 @@
-package gl.linpeng.ai.taichu.request;
+package gl.linpeng.ai.taichu.protocol.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
