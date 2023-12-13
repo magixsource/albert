@@ -3,7 +3,7 @@ package gl.linpeng.ai.yiyan.constant;
 /**
  * Yiyan constant
  */
-public class Constant {
+public class Constants {
 
     public static final String HTTP_ENDPOINT_GET_TOKEN = "https://aip.baidubce.com/oauth/2.0/token";
     public static final String HTTP_ENDPOINT_ERNIE_BOT4 = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro";

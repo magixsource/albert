@@ -1,10 +1,10 @@
 package gl.linpeng.ai.qingyan;
 
 import com.alibaba.fastjson.JSON;
-import gl.linpeng.ai.commons.HttpUtil;
-import gl.linpeng.ai.commons.TokenUtil;
+import gl.linpeng.ai.commons.util.HttpUtils;
+import gl.linpeng.ai.commons.util.TokenUtils;
 import gl.linpeng.ai.qingyan.config.QingyanProperties;
-import gl.linpeng.ai.qingyan.constant.Constant;
+import gl.linpeng.ai.qingyan.constant.Constants;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanChatGlmTurboRequest;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanRequest;
 import gl.linpeng.ai.qingyan.protocol.response.QingyanChatGlmTurboResponse;
@@ -40,11 +40,11 @@ public class QingyanClient {
         // 生成JWT token
         String token = getJwtToken();
         String body = JSON.toJSONString(requestTurbo);
-        String responseString = HttpUtil.post(Constant.HTTP_ENDPOINT_CHAT_GLM_TURBO_SYNC, body, token);
+        String responseString = HttpUtils.post(Constants.HTTP_ENDPOINT_CHAT_GLM_TURBO_SYNC, body, token);
         QingyanChatGlmTurboResponse response = JSON.parseObject(responseString, QingyanChatGlmTurboResponse.class);
-        if (Constant.HTTP_STATUS_SUCCESS == response.getCode()) {
+        if (Constants.HTTP_STATUS_SUCCESS == response.getCode()) {
             System.out.println("正确响应:" + JSON.toJSONString(response.getData()));
-        } else if (Constant.HTTP_STATUS_ERROR == response.getCode()) {
+        } else if (Constants.HTTP_STATUS_ERROR == response.getCode()) {
             System.out.println("错误响应:" + JSON.toJSONString(response.getData()));
         } else {
             System.out.println("其他响应:" + JSON.toJSONString(response.getData()));
@@ -85,6 +85,6 @@ public class QingyanClient {
         payload.put("timestamp", timestamp);
         // 过期时间 = 当前时间+1小时
         payload.put("exp", timestamp + 3600 * 1000);
-        return TokenUtil.getJwtToken(headers, payload, Constant.TOKEN_KEY);
+        return TokenUtils.getJwtToken(headers, payload, Constants.TOKEN_KEY);
     }
 }

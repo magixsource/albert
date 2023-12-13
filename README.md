@@ -42,7 +42,7 @@ request.setMessages(messages);
 client.invoke(request);
 ```
 
-## QINGYAN(清言)[TODO]
+## QINGYAN(清言)
 ###  1. 介绍
 智谱清言，是北京智谱华章科技有限公司推出的生成式AI助手，可在工作、学习和日常生活中为用户解答各类问题，完成各种任务。智谱清言基于智谱AI自主研发的中英双语对话模型ChatGLM2，经过万亿字符的文本与代码预训练，并采用有监督微调技术，以通用对话的形式为用户提供智能化服务。
 
@@ -53,6 +53,17 @@ client.invoke(request);
   <artifactId>albert-qingyan-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
+```
+
+###  3. 使用
+```
+QingyanClient client = new QingyanClient();
+QingyanChatGlmTurboRequest request = new QingyanChatGlmTurboRequest();
+List<Message> messages = new ArrayList<>(1);
+Message message = new Message("user", "你好");
+messages.add(message);
+request.setPrompt(messages);
+client.invoke(request);
 ```
 
 ## QIANWEN(千问)[TODO]

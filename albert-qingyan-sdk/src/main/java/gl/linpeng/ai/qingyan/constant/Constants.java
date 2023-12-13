@@ -3,7 +3,7 @@ package gl.linpeng.ai.qingyan.constant;
 /**
  * Taichu constant
  */
-public class Constant {
+public class Constants {
     /**
      * SSE调用的HTTP端点
      */

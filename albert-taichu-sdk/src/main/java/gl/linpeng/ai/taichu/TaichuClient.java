@@ -1,9 +1,9 @@
 package gl.linpeng.ai.taichu;
 
 import com.alibaba.fastjson.JSON;
-import gl.linpeng.ai.commons.HttpUtil;
+import gl.linpeng.ai.commons.util.HttpUtils;
 import gl.linpeng.ai.taichu.config.TaichuProperties;
-import gl.linpeng.ai.taichu.constant.Constant;
+import gl.linpeng.ai.taichu.constant.Constants;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest10B;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest8B;
@@ -46,11 +46,11 @@ public class TaichuClient {
      * @param request8B request8B
      */
     private void invoke8B(TaichuRequest8B request8B) {
-        request8B.setModelCode(Constant.TAICHU_LLA_8B);
+        request8B.setModelCode(Constants.TAICHU_LLA_8B);
         request8B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request8B);
         boolean isStream = request8B.getDoStream() == null || request8B.getDoStream();
-        String responseString = HttpUtil.post(Constant.HTTP_ENDPOINT_V1, body);
+        String responseString = HttpUtils.post(Constants.HTTP_ENDPOINT_V1, body);
         if (isStream) {
             // 实时响应
             TaichuStreamResponse response = JSON.parseObject(responseString, TaichuStreamResponse.class);
@@ -74,10 +74,10 @@ public class TaichuClient {
      * @param request10B request10B
      */
     private void invoke10B(TaichuRequest10B request10B) {
-        request10B.setModelCode(Constant.TAICHU_VQA_10B);
+        request10B.setModelCode(Constants.TAICHU_VQA_10B);
         request10B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request10B);
-        TaichuResponse response = JSON.parseObject(HttpUtil.post(Constant.HTTP_ENDPOINT_V1, body), TaichuResponse.class);
+        TaichuResponse response = JSON.parseObject(HttpUtils.post(Constants.HTTP_ENDPOINT_V1, body), TaichuResponse.class);
         if (response.getCode() == 0) {
             TaichuResponse.Data data = response.getData();
             System.out.println("正确响应:" + data.getContent());

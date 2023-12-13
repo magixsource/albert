@@ -1,11 +1,11 @@
-package gl.linpeng.ai.commons;
+package gl.linpeng.ai.commons.util;
 
 
 import cn.hutool.jwt.JWTUtil;
 
 import java.util.Map;
 
-public class TokenUtil {
+public class TokenUtils {
 
     /**
      * Get jwt token

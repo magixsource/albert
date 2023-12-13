@@ -1,9 +1,9 @@
-package gl.linpeng.ai.commons;
+package gl.linpeng.ai.commons.util;
 
 /**
  * Http util
  */
-public class HttpUtil {
+public class HttpUtils {
 
     private static final int HTTP_TIMEOUT = 5000;
 
