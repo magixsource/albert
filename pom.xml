@@ -9,8 +9,9 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>taichu-sdk</module>
-        <module>yiyan-sdk</module>
+        <module>albert-taichu-sdk</module>
+        <module>albert-yiyan-sdk</module>
+        <module>albert-commons</module>
     </modules>
 
     <properties>
@@ -18,7 +19,6 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>5.3.20</spring.version>
-        <hutool.version>5.7.10</hutool.version>
         <fastjson.version>1.2.76</fastjson.version>
     </properties>
 
@@ -34,16 +34,10 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -75,7 +69,6 @@
                         <dirty>-dirty</dirty>
                     </gitDescribe>
                 </configuration>
-
             </plugin>
         </plugins>
     </build>

@@ -8,13 +8,20 @@
         <artifactId>albert</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <description>紫东太初大模型SDK</description>
-    <artifactId>taichu-sdk</artifactId>
+
+    <artifactId>albert-yiyan-sdk</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>gl.linpeng.ai</groupId>
+            <artifactId>albert-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,7 +1,7 @@
 package gl.linpeng.ai.taichu;
 
-import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
+import gl.linpeng.ai.commons.HttpUtil;
 import gl.linpeng.ai.taichu.config.TaichuProperties;
 import gl.linpeng.ai.taichu.constant.Constant;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest;
@@ -50,7 +50,7 @@ public class TaichuClient {
         request8B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request8B);
         boolean isStream = request8B.getDoStream() == null || request8B.getDoStream();
-        String responseString = post(Constant.HTTP_ENDPOINT_V1, body);
+        String responseString = HttpUtil.post(Constant.HTTP_ENDPOINT_V1, body);
         if (isStream) {
             // 实时响应
             TaichuStreamResponse response = JSON.parseObject(responseString, TaichuStreamResponse.class);
@@ -77,7 +77,7 @@ public class TaichuClient {
         request10B.setModelCode(Constant.TAICHU_VQA_10B);
         request10B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request10B);
-        TaichuResponse response = JSON.parseObject(post(Constant.HTTP_ENDPOINT_V1, body), TaichuResponse.class);
+        TaichuResponse response = JSON.parseObject(HttpUtil.post(Constant.HTTP_ENDPOINT_V1, body), TaichuResponse.class);
         if (response.getCode() == 0) {
             TaichuResponse.Data data = response.getData();
             System.out.println("正确响应:" + data.getContent());
@@ -86,20 +86,6 @@ public class TaichuClient {
             System.out.println("错误信息：" + response.getMsg());
         }
 
-    }
-
-
-    /**
-     * POST请求
-     *
-     * @param url  url
-     * @param body json
-     * @return response string
-     */
-    private String post(String url, String body) {
-        String responseString = HttpUtil.post(url, body, Constant.HTTP_TIMEOUT);
-        System.out.println("原始响应:" + responseString);
-        return responseString;
     }
 
 
