@@ -12,6 +12,7 @@
         <module>albert-taichu-sdk</module>
         <module>albert-yiyan-sdk</module>
         <module>albert-commons</module>
+        <module>albert-qingyan-sdk</module>
     </modules>
 
     <properties>
