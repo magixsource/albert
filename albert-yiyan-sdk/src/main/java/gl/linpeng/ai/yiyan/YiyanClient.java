@@ -7,8 +7,10 @@ import gl.linpeng.ai.yiyan.constant.Constant;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot4;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBotTurbo;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot4;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBotTurbo;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,8 +49,18 @@ public class YiyanClient {
         } else if (request instanceof YiyanRequestErnieBot) {
             YiyanRequestErnieBot requestErnieBot = (YiyanRequestErnieBot) request;
             invokeErnieBot(requestErnieBot);
+        }else if (request instanceof YiyanRequestErnieBotTurbo  ) {
+            YiyanRequestErnieBotTurbo requestErnieBotTurbo = (YiyanRequestErnieBotTurbo) request;
+            invokeErnieBotTurbo(requestErnieBotTurbo);
         }
 
+    }
+
+    private void invokeErnieBotTurbo(YiyanRequestErnieBotTurbo requestErnieBotTurbo) {
+        String body = JSON.toJSONString(requestErnieBotTurbo);
+        String url = Constant.HTTP_ENDPOINT_ERNIE_BOT_TURBO + "?access_token=" + accessToken.getAccessToken();
+        YiyanResponseErnieBotTurbo response = JSON.parseObject(HttpUtil.post(url, body), YiyanResponseErnieBotTurbo.class);
+        System.out.println(JSON.toJSONString(response));
     }
 
     private void invokeErnieBot(YiyanRequestErnieBot requestErnieBot) {
