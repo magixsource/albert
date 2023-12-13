@@ -16,4 +16,14 @@ public class HttpUtil {
         System.out.println("原始响应:" + responseString);
         return responseString;
     }
+
+    public static String post(String url, String body, String jwtToken) {
+        return cn.hutool.http.HttpUtil.createPost(url)
+                .body(body)
+                .timeout(HTTP_TIMEOUT)
+                .header("Content-Type", "application/json")
+                .header("Authorization", jwtToken)
+                .execute()
+                .body();
+    }
 }

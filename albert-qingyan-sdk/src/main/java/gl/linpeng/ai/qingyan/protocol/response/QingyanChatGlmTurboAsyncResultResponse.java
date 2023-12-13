@@ -1,21 +1,9 @@
 package gl.linpeng.ai.qingyan.protocol.response;
 
-public class QingyanChatGlmTurboResponse extends QingyanResponse {
-    /**
-     * 错误码
-     */
+public class QingyanChatGlmTurboAsyncResultResponse extends QingyanResponse{
     private int code;
-    /**
-     * 错误信息
-     */
     private String msg;
-    /**
-     * 请求成功失败标识，true（成功），false（失败）
-     */
-    private Boolean success;
-    /**
-     * 响应内容
-     */
+    private boolean success;
     private Data data;
 
     public int getCode() {
@@ -34,11 +22,11 @@ public class QingyanChatGlmTurboResponse extends QingyanResponse {
         this.msg = msg;
     }
 
-    public Boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 
