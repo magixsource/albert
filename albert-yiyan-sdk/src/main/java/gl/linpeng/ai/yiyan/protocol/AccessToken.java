@@ -1,4 +1,4 @@
-package gl.linpeng.ai.yiyan;
+package gl.linpeng.ai.yiyan.protocol;
 
 /**
  * AccessToken

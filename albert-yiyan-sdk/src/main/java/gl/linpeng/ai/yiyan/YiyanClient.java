@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import gl.linpeng.ai.commons.HttpUtil;
 import gl.linpeng.ai.yiyan.config.YiyanProperties;
 import gl.linpeng.ai.yiyan.constant.Constant;
+import gl.linpeng.ai.yiyan.protocol.AccessToken;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot4;
