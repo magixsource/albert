@@ -2,6 +2,8 @@ package gl.linpeng.ai.yiyan.protocol.response;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.List;
+
 /**
  * Usage统计信息
  */
@@ -21,6 +23,12 @@ public class Usage {
      */
     @JSONField(name = "total_tokens")
     private int totalTokens;
+
+    /**
+     * 适用于ErnieBOT模型: plugin消耗的tokens
+     */
+    @JSONField(name = "plugins")
+    private List<PluginUsage> plugins;
 
     public int getPromptTokens() {
         return promptTokens;
@@ -44,5 +52,13 @@ public class Usage {
 
     public void setTotalTokens(int totalTokens) {
         this.totalTokens = totalTokens;
+    }
+
+    public List<PluginUsage> getPlugins() {
+        return plugins;
+    }
+
+    public void setPlugins(List<PluginUsage> plugins) {
+        this.plugins = plugins;
     }
 }

@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
- * 搜索信息
+ * 搜索结果列表
  */
 public class SearchInfo {
 

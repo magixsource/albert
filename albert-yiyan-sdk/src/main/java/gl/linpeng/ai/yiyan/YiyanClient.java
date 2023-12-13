@@ -5,7 +5,9 @@ import gl.linpeng.ai.commons.HttpUtil;
 import gl.linpeng.ai.yiyan.config.YiyanProperties;
 import gl.linpeng.ai.yiyan.constant.Constant;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot4;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot4;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +44,18 @@ public class YiyanClient {
         if (request instanceof YiyanRequestErnieBot4) {
             YiyanRequestErnieBot4 requestErnieBot4 = (YiyanRequestErnieBot4) request;
             invokeErnieBot4(requestErnieBot4);
+        } else if (request instanceof YiyanRequestErnieBot) {
+            YiyanRequestErnieBot requestErnieBot = (YiyanRequestErnieBot) request;
+            invokeErnieBot(requestErnieBot);
         }
 
+    }
+
+    private void invokeErnieBot(YiyanRequestErnieBot requestErnieBot) {
+        String body = JSON.toJSONString(requestErnieBot);
+        String url = Constant.HTTP_ENDPOINT_ERNIE_BOT + "?access_token=" + accessToken.getAccessToken();
+        YiyanResponseErnieBot response = JSON.parseObject(HttpUtil.post(url, body), YiyanResponseErnieBot.class);
+        System.out.println(JSON.toJSONString(response));
     }
 
     private void invokeErnieBot4(YiyanRequestErnieBot4 requestErnieBot4) {
