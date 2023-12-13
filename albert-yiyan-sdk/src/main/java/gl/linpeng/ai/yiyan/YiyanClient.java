@@ -34,6 +34,9 @@ public class YiyanClient {
             // 将响应转换为对象
             if (responseString != null) {
                 YiyanTokenResponse response = JSON.parseObject(responseString, YiyanTokenResponse.class);
+                if (response == null || response.getAccessToken() == null) {
+                    throw new RuntimeException("获取token失败");
+                }
                 // 正常获取到token
                 accessToken = new AccessToken(response.getAccessToken(), response.getExpiresIn());
             }
@@ -49,7 +52,7 @@ public class YiyanClient {
         } else if (request instanceof YiyanRequestErnieBot) {
             YiyanRequestErnieBot requestErnieBot = (YiyanRequestErnieBot) request;
             invokeErnieBot(requestErnieBot);
-        }else if (request instanceof YiyanRequestErnieBotTurbo  ) {
+        } else {
             YiyanRequestErnieBotTurbo requestErnieBotTurbo = (YiyanRequestErnieBotTurbo) request;
             invokeErnieBotTurbo(requestErnieBotTurbo);
         }
