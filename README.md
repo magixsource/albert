@@ -7,7 +7,7 @@ albert是一个专注于AI领域开发JAVA SDK套件，旨在帮助程序员快�
 ```
 <dependency>
   <groupId>gl.linpeng.ai</groupId>
-  <artifactId>taichu-sdk</artifactId>
+  <artifactId>albert-taichu-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -19,14 +19,14 @@ request8B.setQuestion("你好");
 client.invoke(request8B);
 ```
 
-## YIYAN(一言)[TODO]
+## YIYAN(一言)
 ###  1. 介绍
 文心一言（英文名：ERNIE Bot）是百度全新一代知识增强大语言模型，文心大模型家族的新成员，能够与人对话互动、回答问题、协助创作，高效便捷地帮助人们获取信息、知识和灵感。文心一言从数万亿数据和数千亿知识中融合学习，得到预训练大模型，在此基础上采用有监督精调、人类反馈强化学习、提示等技术，具备知识增强、检索增强和对话增强的技术优势。
 ###  2. maven引用
 ```
 <dependency>
   <groupId>gl.linpeng.ai</groupId>
-  <artifactId>yiyan-sdk</artifactId>
+  <artifactId>albert-yiyan-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -39,7 +39,7 @@ client.invoke(request8B);
 ```
 <dependency>
   <groupId>gl.linpeng.ai</groupId>
-  <artifactId>qingyan-sdk</artifactId>
+  <artifactId>albert-qingyan-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -51,7 +51,7 @@ client.invoke(request8B);
 ```
 <dependency>
   <groupId>gl.linpeng.ai</groupId>
-  <artifactId>qianwen-sdk</artifactId>
+  <artifactId>albert-qianwen-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -63,7 +63,7 @@ client.invoke(request8B);
 ```
 <dependency>
   <groupId>gl.linpeng.ai</groupId>
-  <artifactId>wukong-sdk</artifactId>
+  <artifactId>albert-wukong-sdk</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
