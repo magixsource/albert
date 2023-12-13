@@ -31,6 +31,17 @@ client.invoke(request8B);
 </dependency>
 ```
 
+###  3. 使用
+```
+YiyanClient client = new YiyanClient();
+YiyanRequestErnieBot request = new YiyanRequestErnieBot();
+Message message = new Message();
+message.setContent("你好,请介绍你自己");
+List<Message> messages = List.of(message);
+request.setMessages(messages);
+client.invoke(request);
+```
+
 ## QINGYAN(清言)[TODO]
 ###  1. 介绍
 智谱清言，是北京智谱华章科技有限公司推出的生成式AI助手，可在工作、学习和日常生活中为用户解答各类问题，完成各种任务。智谱清言基于智谱AI自主研发的中英双语对话模型ChatGLM2，经过万亿字符的文本与代码预训练，并采用有监督微调技术，以通用对话的形式为用户提供智能化服务。
