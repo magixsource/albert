@@ -5,8 +5,8 @@ import gl.linpeng.ai.commons.util.HttpUtils;
 import gl.linpeng.ai.taichu.config.TaichuProperties;
 import gl.linpeng.ai.taichu.constant.Constants;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest;
-import gl.linpeng.ai.taichu.protocol.request.TaichuRequest10B;
-import gl.linpeng.ai.taichu.protocol.request.TaichuRequest8B;
+import gl.linpeng.ai.taichu.protocol.request.Taichu10BRequest;
+import gl.linpeng.ai.taichu.protocol.request.Taichu8BRequest;
 import gl.linpeng.ai.taichu.protocol.response.TaichuResponse;
 import gl.linpeng.ai.taichu.protocol.response.TaichuStreamResponse;
 import org.springframework.stereotype.Component;
@@ -30,11 +30,11 @@ public class TaichuClient {
      * @param request request
      */
     public void invoke(TaichuRequest request) {
-        if (request instanceof TaichuRequest10B) {
-            TaichuRequest10B request10B = (TaichuRequest10B) request;
+        if (request instanceof Taichu10BRequest) {
+            Taichu10BRequest request10B = (Taichu10BRequest) request;
             invoke10B(request10B);
-        } else if (request instanceof TaichuRequest8B) {
-            TaichuRequest8B request8B = (TaichuRequest8B) request;
+        } else if (request instanceof Taichu8BRequest) {
+            Taichu8BRequest request8B = (Taichu8BRequest) request;
             invoke8B(request8B);
         } else {
             throw new RuntimeException("Not support request type");
@@ -47,7 +47,7 @@ public class TaichuClient {
      *
      * @param request8B request8B
      */
-    private void invoke8B(TaichuRequest8B request8B) {
+    private void invoke8B(Taichu8BRequest request8B) {
         request8B.setModelCode(Constants.TAICHU_LLA_8B);
         request8B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request8B);
@@ -75,7 +75,7 @@ public class TaichuClient {
      *
      * @param request10B request10B
      */
-    private void invoke10B(TaichuRequest10B request10B) {
+    private void invoke10B(Taichu10BRequest request10B) {
         request10B.setModelCode(Constants.TAICHU_VQA_10B);
         request10B.setApiKey(taichuProperties.getApiKey());
         String body = JSON.toJSONString(request10B);

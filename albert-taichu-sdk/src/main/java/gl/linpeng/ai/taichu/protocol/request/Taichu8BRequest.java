@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 太初8B模型请求对象
  */
-public class TaichuRequest8B extends TaichuRequest {
+public class Taichu8BRequest extends TaichuRequest {
     /**
      * 是否流式输出，默认true
      */

@@ -20,7 +20,7 @@ TaichuProperties properties = new TaichuProperties();
 properties.setApiKey("your_apikey");
 
 TaichuClient client = new TaichuClient(properties);
-TaichuRequest8B request8B = new TaichuRequest8B();
+Taichu8BRequest request8B = new Taichu8BRequest();
 
 request8B.setQuestion("你好");
 client.invoke(request8B);
