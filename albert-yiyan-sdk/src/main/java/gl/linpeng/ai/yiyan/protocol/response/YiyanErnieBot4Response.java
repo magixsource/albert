@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * ErnieBot4对话返回
  */
-public class YiyanResponseErnieBot4 extends YiyanResponse {
+public class YiyanErnieBot4Response extends YiyanResponse {
     /**
      * 输出内容标识，说明：
      * · normal：输出内容完全由大模型生成，未触发截断、替换

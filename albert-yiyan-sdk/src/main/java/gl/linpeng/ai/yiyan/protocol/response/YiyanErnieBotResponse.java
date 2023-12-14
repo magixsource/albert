@@ -6,7 +6,7 @@ import gl.linpeng.ai.yiyan.protocol.request.FunctionCall;
 /**
  * ErnieBot对话返回
  */
-public class YiyanResponseErnieBot extends YiyanResponseErnieBot4 {
+public class YiyanErnieBotResponse extends YiyanErnieBot4Response {
 
     /**
      * 适用于ErnieBOT模型:由模型生成的函数调用，包含函数名称，和调用参数

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * ErnieBot请求
  */
-public class YiyanRequestErnieBot extends YiyanRequestErnieBot4 {
+public class YiyanErnieBotRequest extends YiyanErnieBot4Request {
 
     /**
      * 一个可触发函数的描述列表，说明：

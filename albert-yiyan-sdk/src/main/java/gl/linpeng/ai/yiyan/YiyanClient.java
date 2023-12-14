@@ -6,12 +6,12 @@ import gl.linpeng.ai.yiyan.config.YiyanProperties;
 import gl.linpeng.ai.yiyan.constant.Constants;
 import gl.linpeng.ai.yiyan.protocol.AccessToken;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
-import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot;
-import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBot4;
-import gl.linpeng.ai.yiyan.protocol.request.YiyanRequestErnieBotTurbo;
-import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot;
-import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot4;
-import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBotTurbo;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotRequest;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBot4Request;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotTurboRequest;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBotResponse;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBot4Response;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBotTurboResponse;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanTokenResponse;
 import org.springframework.stereotype.Component;
 
@@ -49,37 +49,37 @@ public class YiyanClient {
 
     public void invoke(YiyanRequest request) {
         getAccessToken();
-        if (request instanceof YiyanRequestErnieBot4) {
-            YiyanRequestErnieBot4 requestErnieBot4 = (YiyanRequestErnieBot4) request;
+        if (request instanceof YiyanErnieBot4Request) {
+            YiyanErnieBot4Request requestErnieBot4 = (YiyanErnieBot4Request) request;
             invokeErnieBot4(requestErnieBot4);
-        } else if (request instanceof YiyanRequestErnieBot) {
-            YiyanRequestErnieBot requestErnieBot = (YiyanRequestErnieBot) request;
+        } else if (request instanceof YiyanErnieBotRequest) {
+            YiyanErnieBotRequest requestErnieBot = (YiyanErnieBotRequest) request;
             invokeErnieBot(requestErnieBot);
         } else {
-            YiyanRequestErnieBotTurbo requestErnieBotTurbo = (YiyanRequestErnieBotTurbo) request;
+            YiyanErnieBotTurboRequest requestErnieBotTurbo = (YiyanErnieBotTurboRequest) request;
             invokeErnieBotTurbo(requestErnieBotTurbo);
         }
 
     }
 
-    private void invokeErnieBotTurbo(YiyanRequestErnieBotTurbo requestErnieBotTurbo) {
+    private void invokeErnieBotTurbo(YiyanErnieBotTurboRequest requestErnieBotTurbo) {
         String body = JSON.toJSONString(requestErnieBotTurbo);
         String url = Constants.HTTP_ENDPOINT_ERNIE_BOT_TURBO + "?access_token=" + accessToken.getAccessToken();
-        YiyanResponseErnieBotTurbo response = JSON.parseObject(HttpUtils.post(url, body), YiyanResponseErnieBotTurbo.class);
+        YiyanErnieBotTurboResponse response = JSON.parseObject(HttpUtils.post(url, body), YiyanErnieBotTurboResponse.class);
         System.out.println(JSON.toJSONString(response));
     }
 
-    private void invokeErnieBot(YiyanRequestErnieBot requestErnieBot) {
+    private void invokeErnieBot(YiyanErnieBotRequest requestErnieBot) {
         String body = JSON.toJSONString(requestErnieBot);
         String url = Constants.HTTP_ENDPOINT_ERNIE_BOT + "?access_token=" + accessToken.getAccessToken();
-        YiyanResponseErnieBot response = JSON.parseObject(HttpUtils.post(url, body), YiyanResponseErnieBot.class);
+        YiyanErnieBotResponse response = JSON.parseObject(HttpUtils.post(url, body), YiyanErnieBotResponse.class);
         System.out.println(JSON.toJSONString(response));
     }
 
-    private void invokeErnieBot4(YiyanRequestErnieBot4 requestErnieBot4) {
+    private void invokeErnieBot4(YiyanErnieBot4Request requestErnieBot4) {
         String body = JSON.toJSONString(requestErnieBot4);
         String url = Constants.HTTP_ENDPOINT_ERNIE_BOT4 + "?access_token=" + accessToken.getAccessToken();
-        YiyanResponseErnieBot4 response = JSON.parseObject(HttpUtils.post(url, body), YiyanResponseErnieBot4.class);
+        YiyanErnieBot4Response response = JSON.parseObject(HttpUtils.post(url, body), YiyanErnieBot4Response.class);
         System.out.println(JSON.toJSONString(response));
     }
 }

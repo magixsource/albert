@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ErnieBot4请求
  */
-public class YiyanRequestErnieBot4 extends YiyanRequest {
+public class YiyanErnieBot4Request extends YiyanRequest {
 
     /**
      * 生成停止标识，当模型生成结果以stop中某个元素结尾时，停止文本生成。说明：

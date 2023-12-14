@@ -49,7 +49,7 @@ properties.setApiKey("your_apikey");
 properties.setApiSecret("your_apiSecret");
 
 YiyanClient client = new YiyanClient(properties);
-YiyanRequestErnieBot request = new YiyanRequestErnieBot();
+YiyanErnieBotRequest request = new YiyanErnieBotRequest();
 
 Message message = new Message();
 message.setContent("你好,请介绍你自己");
