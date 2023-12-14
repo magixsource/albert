@@ -6,7 +6,6 @@ import gl.linpeng.ai.qianwen.config.QianwenProperties;
 import gl.linpeng.ai.qianwen.constant.Constants;
 import gl.linpeng.ai.qianwen.protocol.request.QianwenRequest;
 import gl.linpeng.ai.qianwen.protocol.response.QianwenResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class QianwenClient {
 
-    @Autowired
+    public QianwenClient(QianwenProperties qianwenProperties) {
+        this.qianwenProperties = qianwenProperties;
+    }
+
     private QianwenProperties qianwenProperties;
 
     public void invoke(QianwenRequest request) {

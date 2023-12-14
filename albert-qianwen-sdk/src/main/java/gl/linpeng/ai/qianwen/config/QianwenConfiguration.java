@@ -12,7 +12,7 @@ public class QianwenConfiguration {
 
     @Bean
     public QianwenClient qianwenClient() {
-        return new QianwenClient();
+        return new QianwenClient(qianwenConfig());
     }
 
     @Bean

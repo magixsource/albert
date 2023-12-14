@@ -1,5 +1,6 @@
 package gl.linpeng.ai.qianwen;
 
+import gl.linpeng.ai.qianwen.config.QianwenProperties;
 import gl.linpeng.ai.qianwen.constant.Constants;
 import gl.linpeng.ai.qianwen.protocol.request.Input;
 import gl.linpeng.ai.qianwen.protocol.request.QianwenRequest;
@@ -7,7 +8,9 @@ import gl.linpeng.ai.qianwen.protocol.request.QianwenRequest;
 public class QianwenTests {
 
     public static void main(String[] args) {
-        QianwenClient client = new QianwenClient();
+        QianwenProperties qianwenProperties = new QianwenProperties();
+        qianwenProperties.setApiKey("mock-apikey");
+        QianwenClient client = new QianwenClient(qianwenProperties);
         QianwenRequest request = new QianwenRequest();
         request.setModel(Constants.MODEL_QWEN_MAX);
         Input input = new Input();

@@ -91,8 +91,12 @@ client.invoke(request);
 
 ###  3. 使用
 ```
-QianwenClient client = new QianwenClient();
+QianwenProperties qianwenProperties = new QianwenProperties();
+qianwenProperties.setApiKey("mock-apikey");
+
+QianwenClient client = new QianwenClient(qianwenProperties);
 QianwenRequest request = new QianwenRequest();
+
 request.setModel(Constants.MODEL_QWEN_MAX);
 Input input = new Input();
 input.setPrompt("你好");
