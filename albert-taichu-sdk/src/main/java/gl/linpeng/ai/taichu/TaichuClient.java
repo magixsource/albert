@@ -9,7 +9,6 @@ import gl.linpeng.ai.taichu.protocol.request.TaichuRequest10B;
 import gl.linpeng.ai.taichu.protocol.request.TaichuRequest8B;
 import gl.linpeng.ai.taichu.protocol.response.TaichuResponse;
 import gl.linpeng.ai.taichu.protocol.response.TaichuStreamResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -19,8 +18,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaichuClient {
 
-    @Autowired
     private TaichuProperties taichuProperties;
+
+    public TaichuClient(TaichuProperties taichuProperties) {
+        this.taichuProperties = taichuProperties;
+    }
 
     /**
      * 调用太初接口,当前支持8B和10B模型

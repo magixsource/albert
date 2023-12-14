@@ -16,8 +16,12 @@ albert是一个专注于AI领域开发JAVA SDK套件，旨在帮助程序员快�
 ```
 ###  3. 使用
 ```
-TaichuClient client = new TaichuClient();
+TaichuProperties properties = new TaichuProperties();
+properties.setApiKey("your_apikey");
+
+TaichuClient client = new TaichuClient(properties);
 TaichuRequest8B request8B = new TaichuRequest8B();
+
 request8B.setQuestion("你好");
 client.invoke(request8B);
 ```
@@ -40,8 +44,13 @@ client.invoke(request8B);
 
 ###  3. 使用
 ```
-YiyanClient client = new YiyanClient();
+YiyanProperties properties = new YiyanProperties();
+properties.setApiKey("your_apikey");
+properties.setApiSecret("your_apiSecret");
+
+YiyanClient client = new YiyanClient(properties);
 YiyanRequestErnieBot request = new YiyanRequestErnieBot();
+
 Message message = new Message();
 message.setContent("你好,请介绍你自己");
 List<Message> messages = List.of(message);

@@ -12,7 +12,7 @@ public class TaichuConfiguration {
 
     @Bean
     public TaichuClient taichuClient() {
-        return new TaichuClient();
+        return new TaichuClient(taichuConfig());
     }
 
     @Bean
