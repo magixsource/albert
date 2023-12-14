@@ -64,8 +64,13 @@ client.invoke(request);
 
 ###  3. 使用
 ```
-QingyanClient client = new QingyanClient();
+QingyanProperties qingyanProperties = new QingyanProperties();
+qingyanProperties.setApiKey("mock_apikey");
+qingyanProperties.setApiSecret("mock_apisecret");
+        
+QingyanClient client = new QingyanClient(qingyanProperties);
 QingyanChatGlmTurboRequest request = new QingyanChatGlmTurboRequest();
+
 List<Message> messages = new ArrayList<>(1);
 Message message = new Message("user", "你好");
 messages.add(message);
