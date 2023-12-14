@@ -12,7 +12,7 @@ public class QingyanConfiguration {
 
     @Bean
     public QingyanClient qingyanClient() {
-        return new QingyanClient();
+        return new QingyanClient(qingyanConfig());
     }
 
     @Bean

@@ -8,7 +8,6 @@ import gl.linpeng.ai.qingyan.constant.Constants;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanChatGlmTurboRequest;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanRequest;
 import gl.linpeng.ai.qingyan.protocol.response.QingyanChatGlmTurboResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -20,8 +19,11 @@ import java.util.Map;
 @Component
 public class QingyanClient {
 
-    @Autowired
     private QingyanProperties qingyanProperties;
+
+    public QingyanClient(QingyanProperties qingyanProperties) {
+        this.qingyanProperties = qingyanProperties;
+    }
 
     public void invoke(QingyanRequest request) {
         if (request instanceof QingyanChatGlmTurboRequest) {
@@ -44,6 +46,22 @@ public class QingyanClient {
         QingyanChatGlmTurboResponse response = JSON.parseObject(responseString, QingyanChatGlmTurboResponse.class);
         if (Constants.HTTP_STATUS_SUCCESS == response.getCode()) {
             System.out.println("正确响应:" + JSON.toJSONString(response.getData()));
+            String taskId = response.getData().getTaskId();
+            while (true) {
+                // 轮询查询结果
+                String resultString = HttpUtils.get(Constants.HTTP_ENDPOINT_CHAT_GLM_TURBO_ASYNC_RESULT + "/" + taskId, token);
+                QingyanChatGlmTurboResponse result = JSON.parseObject(resultString, QingyanChatGlmTurboResponse.class);
+                if (Constants.HTTP_STATUS_SUCCESS == result.getCode()) {
+                    System.out.println("轮询查询结果正确响应:" + JSON.toJSONString(result));
+                    break;
+                } else {
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
         } else if (Constants.HTTP_STATUS_ERROR == response.getCode()) {
             System.out.println("错误响应:" + JSON.toJSONString(response.getData()));
         } else {
@@ -85,6 +103,6 @@ public class QingyanClient {
         payload.put("timestamp", timestamp);
         // 过期时间 = 当前时间+1小时
         payload.put("exp", timestamp + 3600 * 1000);
-        return TokenUtils.getJwtToken(headers, payload, Constants.TOKEN_KEY);
+        return TokenUtils.getJwtToken(headers, payload, qingyanProperties.getApiSecret());
     }
 }

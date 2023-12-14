@@ -4,7 +4,7 @@ public class QingyanChatGlmTurboResponse extends QingyanResponse {
     /**
      * 错误码
      */
-    private int code;
+    private Integer code;
     /**
      * 错误信息
      */
@@ -18,11 +18,11 @@ public class QingyanChatGlmTurboResponse extends QingyanResponse {
      */
     private Data data;
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

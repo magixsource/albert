@@ -1,16 +1,16 @@
 package gl.linpeng.ai.qingyan.protocol.response;
 
-public class QingyanChatGlmTurboAsyncResultResponse extends QingyanResponse{
-    private int code;
+public class QingyanChatGlmTurboAsyncResultResponse extends QingyanResponse {
+    private Integer code;
     private String msg;
     private boolean success;
     private Data data;
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

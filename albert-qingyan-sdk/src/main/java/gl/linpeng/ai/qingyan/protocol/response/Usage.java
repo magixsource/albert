@@ -10,39 +10,39 @@ public class Usage {
      * 问题 tokens 数量
      */
     @JSONField(name = "prompt_tokens")
-    private int promptTokens;
+    private Integer promptTokens;
     /**
      * 回答 tokens 数量
      */
     @JSONField(name = "completion_tokens")
-    private int completionTokens;
+    private Integer completionTokens;
     /**
      * 总 tokens 数量
      */
     @JSONField(name = "total_tokens")
-    private int totalTokens;
+    private Integer totalTokens;
 
-    public int getPromptTokens() {
+    public Integer getPromptTokens() {
         return promptTokens;
     }
 
-    public void setPromptTokens(int promptTokens) {
+    public void setPromptTokens(Integer promptTokens) {
         this.promptTokens = promptTokens;
     }
 
-    public int getCompletionTokens() {
+    public Integer getCompletionTokens() {
         return completionTokens;
     }
 
-    public void setCompletionTokens(int completionTokens) {
+    public void setCompletionTokens(Integer completionTokens) {
         this.completionTokens = completionTokens;
     }
 
-    public int getTotalTokens() {
+    public Integer getTotalTokens() {
         return totalTokens;
     }
 
-    public void setTotalTokens(int totalTokens) {
+    public void setTotalTokens(Integer totalTokens) {
         this.totalTokens = totalTokens;
     }
 }

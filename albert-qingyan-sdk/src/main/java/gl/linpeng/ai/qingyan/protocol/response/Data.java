@@ -56,4 +56,20 @@ public class Data {
     public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus;
     }
+
+    public List<Choice> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
+    }
+
+    public Usage getUsage() {
+        return usage;
+    }
+
+    public void setUsage(Usage usage) {
+        this.usage = usage;
+    }
 }
