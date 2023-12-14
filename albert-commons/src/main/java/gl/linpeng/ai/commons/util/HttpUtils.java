@@ -7,6 +7,18 @@ public class HttpUtils {
 
     private static final int HTTP_TIMEOUT = 30000;
 
+    public static String get(String url) {
+        return cn.hutool.http.HttpUtil.get(url, HTTP_TIMEOUT);
+    }
+
+    public static String get(String url, String token) {
+        return cn.hutool.http.HttpUtil.createGet(url)
+                .timeout(HTTP_TIMEOUT)
+                .header("Authorization", token)
+                .execute()
+                .body();
+    }
+
     public static String post(String url) {
         return post(url, null);
     }
@@ -17,12 +29,12 @@ public class HttpUtils {
         return responseString;
     }
 
-    public static String post(String url, String body, String jwtToken) {
+    public static String post(String url, String body, String token) {
         return cn.hutool.http.HttpUtil.createPost(url)
                 .body(body)
                 .timeout(HTTP_TIMEOUT)
                 .header("Content-Type", "application/json")
-                .header("Authorization", jwtToken)
+                .header("Authorization", token)
                 .execute()
                 .body();
     }
