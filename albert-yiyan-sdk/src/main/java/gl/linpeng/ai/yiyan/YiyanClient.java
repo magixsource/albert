@@ -13,7 +13,6 @@ import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBot4;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanResponseErnieBotTurbo;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanTokenResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,8 +20,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class YiyanClient {
-    @Autowired
     private YiyanProperties yiyanProperties;
+
+    public YiyanClient(YiyanProperties yiyanProperties) {
+        this.yiyanProperties = yiyanProperties;
+    }
 
     private AccessToken accessToken;
 

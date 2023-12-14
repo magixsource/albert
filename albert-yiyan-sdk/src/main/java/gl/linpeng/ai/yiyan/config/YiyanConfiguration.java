@@ -12,7 +12,7 @@ public class YiyanConfiguration {
 
     @Bean
     public YiyanClient yiyanClient() {
-        return new YiyanClient();
+        return new YiyanClient(yiyanConfig());
     }
 
     @Bean
