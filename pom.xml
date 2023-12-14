@@ -13,6 +13,7 @@
         <module>albert-yiyan-sdk</module>
         <module>albert-commons</module>
         <module>albert-qingyan-sdk</module>
+        <module>albert-qianwen-sdk</module>
     </modules>
 
     <properties>
