@@ -5,7 +5,7 @@ package gl.linpeng.ai.commons.util;
  */
 public class HttpUtils {
 
-    private static final int HTTP_TIMEOUT = 5000;
+    private static final int HTTP_TIMEOUT = 30000;
 
     public static String post(String url) {
         return post(url, null);
