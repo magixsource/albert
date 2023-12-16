@@ -20,22 +20,23 @@ public class QianwenClient {
 
     private QianwenProperties qianwenProperties;
 
-    public void invoke(QianwenRequest request) {
+    public QianwenResponse invoke(QianwenRequest request) {
         if (Constants.MODEL_QWEN_TURBO.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_PLUS.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_MAX.equalsIgnoreCase(request.getModel())) {
-            invokeQianwen(request);
+            return invokeQianwen(request);
         } else {
             throw new RuntimeException("暂不支持该模型");
         }
     }
 
-    private void invokeQianwen(QianwenRequest request) {
+    private QianwenResponse invokeQianwen(QianwenRequest request) {
         String body = JSON.toJSONString(request);
         String url = Constants.HTTP_ENDPOINT_QIANWEN;
         String token = "Bearer " + qianwenProperties.getApiKey();
         QianwenResponse response = JSON.parseObject(HttpUtils.post(url, body, token), QianwenResponse.class);
         System.out.println(JSON.toJSONString(response));
+        return response;
     }
 
 }

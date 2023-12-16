@@ -74,5 +74,32 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>geek</id>
+            <repositories>
+                <repository>
+                    <id>geek-snapshots</id>
+                    <name>Ali Private Snapshot Repository</name>
+                    <url>https://packages.aliyun.com/maven/repository/2012569-snapshot-C6Wvk0/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <distributionManagement>
+                <repository>
+                    <id>geek-releases</id>
+                    <name>Ali Private Release Repository</name>
+                    <url>https://packages.aliyun.com/maven/repository/2012569-release-howX4t/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>geek-snapshots</id>
+                    <name>Ali Private Snapshot Repository</name>
+                    <url>https://packages.aliyun.com/maven/repository/2012569-snapshot-C6Wvk0/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>

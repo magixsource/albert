@@ -1,7 +1,7 @@
 package gl.linpeng.ai.qianwen.protocol.response;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import gl.linpeng.ai.qianwen.protocol.request.Message;
+import gl.linpeng.ai.commons.protocol.request.AlbertMessage;
 
 /**
  * 入参result_format=message时候的返回值
@@ -14,7 +14,7 @@ public class Choice {
      */
     @JSONField(name = "finish_reason")
     private String finishReason;
-    private Message message;
+    private AlbertMessage message;
 
     public String getFinishReason() {
         return finishReason;
@@ -24,11 +24,10 @@ public class Choice {
         this.finishReason = finishReason;
     }
 
-    public Message getMessage() {
+    public AlbertMessage getMessage() {
         return message;
     }
-
-    public void setMessage(Message message) {
+    public void setMessage(AlbertMessage message) {
         this.message = message;
     }
 }
