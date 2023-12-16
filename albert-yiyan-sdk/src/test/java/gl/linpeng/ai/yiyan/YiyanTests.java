@@ -4,6 +4,7 @@ import gl.linpeng.ai.yiyan.config.YiyanProperties;
 import gl.linpeng.ai.yiyan.protocol.request.Message;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class YiyanTests {
@@ -16,7 +17,9 @@ public class YiyanTests {
         YiyanErnieBotRequest request = new YiyanErnieBotRequest();
         Message message = new Message();
         message.setContent("你好,请介绍你自己");
-        List<Message> messages = List.of(message);
+        // List<Message> messages = List.of(message);
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
         request.setMessages(messages);
         client.invoke(request);
     }
