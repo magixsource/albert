@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 /**
  * 千问客户端
  */
-@Component
 public class QianwenClient {
 
     public QianwenClient(QianwenProperties qianwenProperties) {

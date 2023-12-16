@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 /**
  * Qianwen config
  */
-@Component
 public class QianwenProperties {
 
     @Value("${albert.qianwen.apikey:mock-apikey}")
