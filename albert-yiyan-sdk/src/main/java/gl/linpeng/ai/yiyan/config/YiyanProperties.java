@@ -1,12 +1,10 @@
 package gl.linpeng.ai.yiyan.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * Yiyan config
  */
-@Component
 public class YiyanProperties {
     @Value("${albert.yiyan.apikey:mock-apikey}")
     private String apiKey;

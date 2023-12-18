@@ -5,20 +5,18 @@ import gl.linpeng.ai.commons.util.HttpUtils;
 import gl.linpeng.ai.yiyan.config.YiyanProperties;
 import gl.linpeng.ai.yiyan.constant.Constants;
 import gl.linpeng.ai.yiyan.protocol.AccessToken;
-import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
-import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotRequest;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBot4Request;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotRequest;
 import gl.linpeng.ai.yiyan.protocol.request.YiyanErnieBotTurboRequest;
-import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBotResponse;
+import gl.linpeng.ai.yiyan.protocol.request.YiyanRequest;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBot4Response;
+import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBotResponse;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanErnieBotTurboResponse;
 import gl.linpeng.ai.yiyan.protocol.response.YiyanTokenResponse;
-import org.springframework.stereotype.Component;
 
 /**
  * 一言客户端
  */
-@Component
 public class YiyanClient {
     private YiyanProperties yiyanProperties;
 

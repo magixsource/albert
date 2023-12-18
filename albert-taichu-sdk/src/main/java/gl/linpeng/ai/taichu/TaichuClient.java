@@ -9,13 +9,11 @@ import gl.linpeng.ai.taichu.protocol.request.Taichu10BRequest;
 import gl.linpeng.ai.taichu.protocol.request.Taichu8BRequest;
 import gl.linpeng.ai.taichu.protocol.response.TaichuResponse;
 import gl.linpeng.ai.taichu.protocol.response.TaichuStreamResponse;
-import org.springframework.stereotype.Component;
 
 
 /**
  * Taichu client
  */
-@Component
 public class TaichuClient {
 
     private TaichuProperties taichuProperties;

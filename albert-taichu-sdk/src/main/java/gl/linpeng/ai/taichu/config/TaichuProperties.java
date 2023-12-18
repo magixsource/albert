@@ -2,12 +2,10 @@ package gl.linpeng.ai.taichu.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * Taichu config
  */
-@Component
 public class TaichuProperties {
 
     @Value("${albert.taichu.apikey:mock-apikey}")
