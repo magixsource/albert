@@ -6,7 +6,6 @@ import gl.linpeng.ai.qianwen.config.QianwenProperties;
 import gl.linpeng.ai.qianwen.constant.Constants;
 import gl.linpeng.ai.qianwen.protocol.request.QianwenRequest;
 import gl.linpeng.ai.qianwen.protocol.response.QianwenResponse;
-import org.springframework.stereotype.Component;
 
 /**
  * 千问客户端
