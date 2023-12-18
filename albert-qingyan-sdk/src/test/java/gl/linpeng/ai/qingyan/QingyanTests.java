@@ -1,12 +1,9 @@
 package gl.linpeng.ai.qingyan;
 
 
+import gl.linpeng.ai.commons.protocol.request.AlbertInput;
+import gl.linpeng.ai.commons.protocol.request.AlbertRequest;
 import gl.linpeng.ai.qingyan.config.QingyanProperties;
-import gl.linpeng.ai.qingyan.protocol.request.Message;
-import gl.linpeng.ai.qingyan.protocol.request.QingyanChatGlmTurboRequest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class QingyanTests {
 
@@ -15,11 +12,10 @@ public class QingyanTests {
         qingyanProperties.setApiKey("mock_apikey");
         qingyanProperties.setApiSecret("mock_apisecret");
         QingyanClient client = new QingyanClient(qingyanProperties);
-        QingyanChatGlmTurboRequest request = new QingyanChatGlmTurboRequest();
-        List<Message> messages = new ArrayList<>(2);
-        Message message = new Message("user", "你好");
-        messages.add(message);
-        request.setPrompt(messages);
+        AlbertRequest request = new AlbertRequest();
+        AlbertInput input = new AlbertInput();
+        input.setPrompt("你好");
+        request.setInput(input);
         client.invoke(request);
     }
 }

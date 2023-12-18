@@ -1,14 +1,19 @@
 package gl.linpeng.ai.qingyan;
 
 import com.alibaba.fastjson.JSON;
+import gl.linpeng.ai.commons.AlbertClient;
+import gl.linpeng.ai.commons.protocol.request.AlbertRequest;
+import gl.linpeng.ai.commons.protocol.response.AlbertResponse;
 import gl.linpeng.ai.commons.util.HttpUtils;
 import gl.linpeng.ai.commons.util.TokenUtils;
 import gl.linpeng.ai.qingyan.config.QingyanProperties;
 import gl.linpeng.ai.qingyan.constant.Constants;
+import gl.linpeng.ai.qingyan.converter.QingyanGlmTurboRequestConverter;
+import gl.linpeng.ai.qingyan.converter.QingyanGlmTurboResponseConverter;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanChatGlmTurboRequest;
 import gl.linpeng.ai.qingyan.protocol.request.QingyanRequest;
 import gl.linpeng.ai.qingyan.protocol.response.QingyanChatGlmTurboResponse;
-import org.springframework.stereotype.Component;
+import gl.linpeng.ai.qingyan.protocol.response.QingyanResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +21,7 @@ import java.util.Map;
 /**
  * Qingyan client
  */
-@Component
-public class QingyanClient {
+public class QingyanClient implements AlbertClient {
 
     private QingyanProperties qingyanProperties;
 
@@ -25,20 +29,19 @@ public class QingyanClient {
         this.qingyanProperties = qingyanProperties;
     }
 
-    public void invoke(QingyanRequest request) {
+    public QingyanResponse invoke(QingyanRequest request) {
         if (request instanceof QingyanChatGlmTurboRequest) {
             QingyanChatGlmTurboRequest requestTurbo = (QingyanChatGlmTurboRequest) request;
             // 异步调用
             // invokeChatGlmTurboAsync(requestTurbo);
             // 同步调用
-            invokeChatGlmTurbo(requestTurbo);
+            return invokeChatGlmTurbo(requestTurbo);
         } else {
             throw new RuntimeException("Not support request type");
         }
-
     }
 
-    private void invokeChatGlmTurbo(QingyanChatGlmTurboRequest requestTurbo) {
+    private QingyanChatGlmTurboResponse invokeChatGlmTurbo(QingyanChatGlmTurboRequest requestTurbo) {
         // 生成JWT token
         String token = getJwtToken();
         String body = JSON.toJSONString(requestTurbo);
@@ -53,7 +56,7 @@ public class QingyanClient {
                 QingyanChatGlmTurboResponse result = JSON.parseObject(resultString, QingyanChatGlmTurboResponse.class);
                 if (Constants.HTTP_STATUS_SUCCESS == result.getCode()) {
                     System.out.println("轮询查询结果正确响应:" + JSON.toJSONString(result));
-                    break;
+                    return result;
                 } else {
                     try {
                         Thread.sleep(1500);
@@ -67,6 +70,7 @@ public class QingyanClient {
         } else {
             System.out.println("其他响应:" + JSON.toJSONString(response.getData()));
         }
+        return null;
     }
 
     /**
@@ -104,5 +108,15 @@ public class QingyanClient {
         // 过期时间 = 当前时间+1小时
         payload.put("exp", timestamp + 3600 * 1000);
         return TokenUtils.getJwtToken(headers, payload, qingyanProperties.getApiSecret());
+    }
+
+    @Override
+    public AlbertResponse invoke(AlbertRequest request) {
+        QingyanGlmTurboRequestConverter qingyanGlmTurboRequestConverter = new QingyanGlmTurboRequestConverter();
+        QingyanChatGlmTurboRequest requestTurbo = qingyanGlmTurboRequestConverter.convert(request);
+        QingyanChatGlmTurboResponse responseTurbo = (QingyanChatGlmTurboResponse) invoke(requestTurbo);
+
+        QingyanGlmTurboResponseConverter qingyanGlmTurboResponseConverter = new QingyanGlmTurboResponseConverter();
+        return qingyanGlmTurboResponseConverter.convertBack(responseTurbo);
     }
 }

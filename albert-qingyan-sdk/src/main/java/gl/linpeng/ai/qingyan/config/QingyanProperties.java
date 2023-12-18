@@ -2,12 +2,10 @@ package gl.linpeng.ai.qingyan.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * Qingyan config
  */
-@Component
 public class QingyanProperties {
 
     @Value("${albert.qingyan.apikey:mock-apikey}")
