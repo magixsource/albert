@@ -6,7 +6,7 @@
     <parent>
         <groupId>gl.linpeng.ai</groupId>
         <artifactId>albert</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <description>紫东太初大模型SDK</description>
     <artifactId>albert-taichu-sdk</artifactId>
