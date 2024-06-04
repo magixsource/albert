@@ -30,14 +30,11 @@ public class QianwenClient implements AlbertClient<QianwenResponse, QianwenReque
 
     @Override
     public String invokeRaw(String requestJson) {
-        System.out.println("======= Qianwen request:\n" + requestJson);
         QianwenRequest request = JSON.parseObject(requestJson, QianwenRequest.class);
         if (!checkModel(request)) {
             throw new RuntimeException("暂不支持该模型");
         }
-        String responseRaw = invokeQianwen(request);
-        System.out.println("======= Qianwen response:\n" + requestJson);
-        return responseRaw;
+        return invokeQianwen(request);
     }
 
     private boolean checkModel(QianwenRequest request) {
