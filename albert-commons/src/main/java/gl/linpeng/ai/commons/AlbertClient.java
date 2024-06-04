@@ -15,4 +15,14 @@ public interface AlbertClient<R extends AlbertResponse, Q extends AlbertRequest>
      * @return albert response
      */
     R invoke(Q request);
+
+    /**
+     * invoke albert in raw mode
+     * no wrapper object,so everything in raw
+     * this is very useful when debug protocol
+     *
+     * @param requestJson request json body
+     * @return response json
+     */
+    String invokeRaw(String requestJson);
 }

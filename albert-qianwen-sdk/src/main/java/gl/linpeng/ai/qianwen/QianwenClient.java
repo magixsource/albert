@@ -1,6 +1,7 @@
 package gl.linpeng.ai.qianwen;
 
 import com.alibaba.fastjson.JSON;
+import gl.linpeng.ai.commons.AlbertClient;
 import gl.linpeng.ai.commons.util.HttpUtils;
 import gl.linpeng.ai.qianwen.config.QianwenProperties;
 import gl.linpeng.ai.qianwen.constant.Constants;
@@ -10,7 +11,7 @@ import gl.linpeng.ai.qianwen.protocol.response.QianwenResponse;
 /**
  * 千问客户端
  */
-public class QianwenClient {
+public class QianwenClient implements AlbertClient<QianwenResponse, QianwenRequest> {
 
     public QianwenClient(QianwenProperties qianwenProperties) {
         this.qianwenProperties = qianwenProperties;
@@ -18,20 +19,40 @@ public class QianwenClient {
 
     private QianwenProperties qianwenProperties;
 
+    @Override
     public QianwenResponse invoke(QianwenRequest request) {
+        if (!checkModel(request)) {
+            throw new RuntimeException("暂不支持该模型");
+        }
+        String responseRaw = invokeQianwen(request);
+        return JSON.parseObject(responseRaw, QianwenResponse.class);
+    }
+
+    @Override
+    public String invokeRaw(String requestJson) {
+        System.out.println("======= Qianwen request:\n" + requestJson);
+        QianwenRequest request = JSON.parseObject(requestJson, QianwenRequest.class);
+        if (!checkModel(request)) {
+            throw new RuntimeException("暂不支持该模型");
+        }
+        String responseRaw = invokeQianwen(request);
+        System.out.println("======= Qianwen response:\n" + requestJson);
+        return responseRaw;
+    }
+
+    private boolean checkModel(QianwenRequest request) {
         if (Constants.MODEL_QWEN_TURBO.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_PLUS.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_MAX.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_VL_V1.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_VL_MAX.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_VL_PLUS.equalsIgnoreCase(request.getModel())) {
-            return invokeQianwen(request);
-        } else {
-            throw new RuntimeException("暂不支持该模型");
+            return true;
         }
+        return false;
     }
 
-    private QianwenResponse invokeQianwen(QianwenRequest request) {
+    private String invokeQianwen(QianwenRequest request) {
         String body = JSON.toJSONString(request);
         String url = Constants.HTTP_ENDPOINT_QIANWEN;
         if (Constants.MODEL_QWEN_VL_V1.equalsIgnoreCase(request.getModel())
@@ -40,8 +61,7 @@ public class QianwenClient {
             url = Constants.HTTP_ENDPOINT_QIANWEN_VL;
         }
         String token = "Bearer " + qianwenProperties.getApiKey();
-        String responseRaw = HttpUtils.post(url, body, token);
-        return JSON.parseObject(responseRaw, QianwenResponse.class);
+        return HttpUtils.post(url, body, token);
     }
 
 }

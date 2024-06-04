@@ -17,11 +17,15 @@ import gl.linpeng.ai.qingyan.protocol.response.QingyanResponse;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
 
 /**
  * Qingyan client
  */
 public class QingyanClient implements AlbertClient {
+
+    private static final Logger logger = Logger.getLogger(QingyanClient.class.getName());
 
     private QingyanProperties qingyanProperties;
 
@@ -118,5 +122,11 @@ public class QingyanClient implements AlbertClient {
 
         QingyanGlmTurboResponseConverter qingyanGlmTurboResponseConverter = new QingyanGlmTurboResponseConverter();
         return qingyanGlmTurboResponseConverter.convertBack(responseTurbo);
+    }
+
+    @Override
+    public String invokeRaw(String requestJson) {
+        // fixme: not supported
+        return null;
     }
 }
