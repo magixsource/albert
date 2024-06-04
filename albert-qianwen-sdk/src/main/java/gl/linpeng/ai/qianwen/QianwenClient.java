@@ -21,7 +21,10 @@ public class QianwenClient {
     public QianwenResponse invoke(QianwenRequest request) {
         if (Constants.MODEL_QWEN_TURBO.equalsIgnoreCase(request.getModel())
                 || Constants.MODEL_QWEN_PLUS.equalsIgnoreCase(request.getModel())
-                || Constants.MODEL_QWEN_MAX.equalsIgnoreCase(request.getModel())) {
+                || Constants.MODEL_QWEN_MAX.equalsIgnoreCase(request.getModel())
+                || Constants.MODEL_QWEN_VL_V1.equalsIgnoreCase(request.getModel())
+                || Constants.MODEL_QWEN_VL_MAX.equalsIgnoreCase(request.getModel())
+                || Constants.MODEL_QWEN_VL_PLUS.equalsIgnoreCase(request.getModel())) {
             return invokeQianwen(request);
         } else {
             throw new RuntimeException("暂不支持该模型");
@@ -31,10 +34,14 @@ public class QianwenClient {
     private QianwenResponse invokeQianwen(QianwenRequest request) {
         String body = JSON.toJSONString(request);
         String url = Constants.HTTP_ENDPOINT_QIANWEN;
+        if (Constants.MODEL_QWEN_VL_V1.equalsIgnoreCase(request.getModel())
+                || Constants.MODEL_QWEN_VL_PLUS.equalsIgnoreCase(request.getModel())
+                || Constants.MODEL_QWEN_VL_MAX.equalsIgnoreCase(request.getModel())) {
+            url = Constants.HTTP_ENDPOINT_QIANWEN_VL;
+        }
         String token = "Bearer " + qianwenProperties.getApiKey();
-        QianwenResponse response = JSON.parseObject(HttpUtils.post(url, body, token), QianwenResponse.class);
-        System.out.println(JSON.toJSONString(response));
-        return response;
+        String responseRaw = HttpUtils.post(url, body, token);
+        return JSON.parseObject(responseRaw, QianwenResponse.class);
     }
 
 }

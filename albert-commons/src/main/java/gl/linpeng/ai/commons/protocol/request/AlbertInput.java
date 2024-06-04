@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 用户输入指令
  */
-public class AlbertInput {
+public class AlbertInput<M extends AlbertMessage> {
     /**
      * 用户期望模型执行的指令
      */
@@ -14,7 +14,7 @@ public class AlbertInput {
     /**
      * 用户与模型的对话历史
      */
-    private List<AlbertMessage> messages;
+    private List<M> messages;
 
     public String getPrompt() {
         return prompt;
@@ -24,10 +24,10 @@ public class AlbertInput {
         this.prompt = prompt;
     }
 
-    public List<AlbertMessage> getMessages() {
+    public List<M> getMessages() {
         return messages;
     }
-    public void setMessages(List<AlbertMessage> messages) {
+    public void setMessages(List<M> messages) {
         this.messages = messages;
     }
 }

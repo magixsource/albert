@@ -6,7 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * 通用返回对象
  * 注意: 这里暂时不支持SSE流式消息
  */
-public class AlbertResponse {
+public class AlbertResponse<O extends AlbertOutput, U extends AlbertUsage> {
 
     /**
      * 请求返回码 200 成功 500 失败
@@ -26,12 +26,12 @@ public class AlbertResponse {
     /**
      * 模型生成的文本内容
      */
-    private AlbertOutput output;
+    private O output;
 
     /**
      * 模型调用统计情况
      */
-    private AlbertUsage usage;
+    private U usage;
 
     public Integer getCode() {
         return code;
@@ -49,25 +49,26 @@ public class AlbertResponse {
         this.message = message;
     }
 
-    public AlbertOutput getOutput() {
+    public O getOutput() {
         return output;
     }
 
-    public void setOutput(AlbertOutput output) {
+    public void setOutput(O output) {
         this.output = output;
     }
 
-    public AlbertUsage getUsage() {
+    public U getUsage() {
         return usage;
     }
 
-    public void setUsage(AlbertUsage usage) {
+    public void setUsage(U usage) {
         this.usage = usage;
     }
 
     public String getRequestId() {
         return requestId;
     }
+
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
